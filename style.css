@@ -1,0 +1,129 @@
+:root{
+    --bgc:rgb(214, 228, 255);
+}
+
+body{
+    margin: 0px;
+    padding: 0px;
+    background-color:var(--bgc)
+}
+
+
+main{
+    overflow: visible;
+    padding: 0px;
+    max-width: 1100px;
+    margin-left: auto;
+    margin-right: auto;
+    height: 1000px;
+    padding-bottom: 100px; 
+}
+
+p{
+        color: aliceblue;
+}
+#EnterCity{
+    display: flex;
+    justify-content:center;
+    align-items: center;
+    flex-direction: column;
+        color: aliceblue;
+}
+input{
+    padding: 10px;
+    border: 0px;
+    border-bottom: 10px solid rgb(59, 111, 255);
+font-size: 2rem;
+}
+
+#tempretureP{
+    position: absolute;
+    transform: translateY(-100px);
+    z-index: 1;
+    color: aliceblue;
+    font-size: 400px;
+    padding: 0px;
+    margin: 0px;
+  font-family: "Black Ops One", system-ui;
+  font-weight: 400;
+  font-style: normal;
+}
+#display{
+    border: 20px solid black ;
+    background-image: url(room.png);
+    background-size:cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    image-rendering: crisp-edges;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 700px;
+    flex-direction: column;
+}
+#room{
+    position: absolute;
+    z-index: -1;
+    width:auto;
+    height:500px;
+}
+#chara{
+    position: relative;
+    z-index: 2;
+     width: 700px;
+display: flex;
+justify-content: center;
+align-items: center;
+flex-direction: column;
+height: min-content;
+column-gap:0px;
+}
+#chara img{
+ width: 300px;
+ height: auto;
+ padding: 0px;
+ margin: 0px;
+ image-rendering: pixelated;
+}
+
+#charanum{
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    height: 1000px;
+}
+
+#facep{
+    transform: translateY(14px);
+}
+#hat{
+    display: none;
+    position: absolute;
+    z-index: 1;
+}
+#eye,#hairS,#hairC,#skinT,#skinB,#shirt{
+    display: block;
+    position: absolute;
+}
+#skinT{
+    z-index: 0;
+}
+#hairS{
+    width: 100%;
+    height: 100%;
+    mask-image: url(chara/hair/hair00.png);
+    mask-repeat: no-repeat;
+    mask-size: contain;
+     image-rendering: pixelated;
+    z-index: 100;
+}
+#skinT {
+    padding: 0px;
+    margin: 0px;
+    z-index: 0;
+}
+#tshirt,#face{
+    opacity: 0;
+}
