@@ -19,16 +19,16 @@ function generate(temp, rain) {
   document.querySelector("#tempretureP").innerHTML = Math.floor(temp);
 
   let eye = Math.floor(Math.random() * 10);
-  document.querySelector("#eye").src = `chara/eyes/eyes${eye}.png`;
+  document.querySelector("#eye").src = `./chara/eyes/eyes${eye}.png`;
 
   let skin = Math.floor(Math.random() * 10);
-  document.querySelector("#skinT").src = `chara/skinT/skinT${skin}.png`;
-  document.querySelector("#skinB").src = `chara/skinB/skinB${skin}.png`;
+  document.querySelector("#skinT").src = `./chara/skinT/skinT${skin}.png`;
+  document.querySelector("#skinB").src = `./chara/skinB/skinB${skin}.png`;
 
   let hairC = Math.floor(Math.random() * 10);
   let hairS =  Math.floor(Math.random() * 10);
-  document.querySelector("#hairC").src = `chara/hair/hair${hairC}.png`;
-  document.querySelector("#hairS").style.maskImage = `url('chara/hair/hair0${hairS}.png')`;
+  document.querySelector("#hairC").src = `./chara/hair/hair${hairC}.png`;
+  document.querySelector("#hairS").style.maskImage = `url('./chara/hair/hair0${hairS}.png')`;
 
   let shirtC=Math.floor(Math.random() * 10);
   let season
@@ -37,7 +37,7 @@ function generate(temp, rain) {
   } else {
       season ='sum'
   }
-  document.querySelector("#shirt").src = `chara/${season}shirts/shirt${shirtC}.png`;
+  document.querySelector("#shirt").src = `./chara/${season}shirts/shirt${shirtC}.png`;
 
 
 
