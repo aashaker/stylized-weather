@@ -3,21 +3,43 @@
 }
 
 body{
+    background-image: url(room2.png);
+    background-size:cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    backdrop-filter: blur(10px);
     margin: 0px;
     padding: 0px;
-    background-color:var(--bgc)
+    background-color:var(--bgc);
+    height: 100vh;
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
 
 
 main{
-    overflow: visible;
+    margin-top: 50px;
+    box-sizing: border-box;
     padding: 0px;
-    max-width: 1100px;
-    margin-left: auto;
-    margin-right: auto;
-    height: 1000px;
-    padding-bottom: 100px; 
+    height: 700px;
+    width: 1000px;
+    overflow: hidden;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+  background: rgba(255, 255, 255, 0.27);
+  backdrop-filter: blur(26px);
+  -webkit-backdrop-filter: blur(26px);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
 }
+
+
+
 
 p{
         color: aliceblue;
@@ -27,29 +49,28 @@ p{
     justify-content:center;
     align-items: center;
     flex-direction: column;
-        color: aliceblue;
-}
-input{
-    padding: 10px;
-    border: 0px;
-    border-bottom: 10px solid rgb(59, 111, 255);
-font-size: 2rem;
 }
 
 #tempretureP{
     position: absolute;
     transform: translateY(-100px);
     z-index: 1;
-    color: aliceblue;
-    font-size: 400px;
+    color:#123354;
+    font-size: 300px;
     padding: 0px;
     margin: 0px;
   font-family: "Black Ops One", system-ui;
   font-weight: 400;
   font-style: normal;
 }
+#displayParent{
+ display: flex;
+    justify-content: center;
+    align-items: center;
+}
 #display{
-    border: 20px solid black ;
+      border-radius: 20px;
+    border: 2px solid #ffffff ;
     background-image: url(room2.png);
     background-size:cover;
     background-repeat: no-repeat;
@@ -58,19 +79,15 @@ font-size: 2rem;
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 700px;
+    height: 600px;
+    width: 600px;
+
     flex-direction: column;
-}
-#room{
-    position: absolute;
-    z-index: -1;
-    width:auto;
-    height:500px;
 }
 #chara{
     position: relative;
     z-index: 2;
-     width: 700px;
+     width: fit-content;
 display: flex;
 justify-content: center;
 align-items: center;
@@ -79,7 +96,7 @@ height: min-content;
 column-gap:0px;
 }
 #chara img{
- width: 300px;
+ width: 200px;
  height: auto;
  padding: 0px;
  margin: 0px;
@@ -126,4 +143,81 @@ column-gap:0px;
 }
 #tshirt,#face{
     opacity: 0;
+}
+
+
+.loader {
+  width: 150px;
+  padding: 16px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: #d4d4d4;
+  --_m: 
+    conic-gradient(#0000 10%,#000),
+    linear-gradient(#000 0 0) content-box;
+  -webkit-mask: var(--_m);
+          mask: var(--_m);
+  -webkit-mask-composite: source-out;
+          mask-composite: subtract;
+  animation: l3 1s infinite linear;
+}
+@keyframes l3 {to{transform: rotate(1turn)}}
+
+
+input{
+    position: relative;
+    padding: 10px;
+    font-size: 16px;
+    width: 300px;
+    height: 40px;
+    border: none;
+    border-bottom: #8b8b8b solid 2px;
+    border-radius: 4px;
+    box-sizing: border-box;
+    background:none;
+}
+
+input:focus{
+    outline: none;
+
+}
+
+.placeholder{
+    transition: all 0.1s ease-in-out;
+    position: absolute;
+    z-index: 5;
+    top: -5px;
+    left: 10px;
+    font-size: 14px;
+    color: #3d6e3d;
+    padding: 0 5px;
+}
+
+.placeholderParent{
+    position: relative;
+    margin-top: 50px;
+}
+
+#infoDisplay{
+        padding-top: 100px;
+    box-sizing: border-box;
+    height: 100%;
+    width: 300px;
+}
+
+.dataItems{
+    display: flex;
+    justify-content: start;
+    align-items: center;
+}
+.dataItems p{
+        font-size: 20px;
+        font-weight: 600;
+        line-break: none;
+    color: #000000;
+}
+.dataItems img{
+    aspect-ratio: 1/1;
+    width: 50px;
+    fill: #3d6e3d;
 }

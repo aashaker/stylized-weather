@@ -1,8 +1,14 @@
+const inputAreainput = document.querySelectorAll('input');
+
+
 document.querySelector("#cityinput").onchange = () => {
+  if(document.querySelector("#cityinput").value!=""){
   getgeo(
     `https://geocoding-api.open-meteo.com/v1/search?name=${document.querySelector("#cityinput").value}&count=10&language=en&format=json`,
   );
   awaiting();
+  }
+
 };
 
 document.getElementById('btn').onclick=()=>{
@@ -12,12 +18,27 @@ document.getElementById('btn').onclick=()=>{
 let temp = 0;
 
 function awaiting() {
-  document.querySelector("#tempretureP").innerHTML = "processing";
+  document.querySelector("#tempretureP").innerHTML = '<div class="loader"></div>';
+  let dataP = document.querySelectorAll(".dataItems p");
+dataP[0].innerHTML=`feels like:c`;
+dataP[1].innerHTML=`Precipitatione:%`;
+dataP[2].innerHTML=`Wind speed:km/h`;
+dataP[3].innerHTML=`Humidity:`;
 }
 
-function generate(temp, rain) {
-  document.querySelector("#tempretureP").innerHTML = Math.floor(temp);
+function generate(temp,tempC, prep,windS,HU,admin1) {
+let dataP = document.querySelectorAll(".dataItems p");
+let dataH1=  document.querySelector("#infoDisplay h1");
+dataH1.innerHTML=admin1;
+dataP[0].innerHTML=`feels like:${tempC}c`;
+dataP[1].innerHTML=`Precipitatione:${prep}%`;
+dataP[2].innerHTML=`Wind speed:${windS}km/h`;
+dataP[3].innerHTML=`Humidity:${HU}`;
 
+
+
+
+  document.querySelector("#tempretureP").innerHTML = Math.floor(temp);
   let eye = Math.floor(Math.random() * 10);
   document.querySelector("#eye").src = `./chara/eyes/eyes${eye}.png`;
 
@@ -51,28 +72,62 @@ function generate(temp, rain) {
 async function getgeo(url) {
   try {
     response = await fetch(url);
+    console.log(url)
     if (response.ok) {
       const data = await response.json();
       let lat = data.results[0].latitude;
       let lon = data.results[0].longitude;
-      await getweath(lat, lon);
-    }
-  } catch (error) {
-    console.log(error);
-  }
-}
-
-async function getweath(lat, lon) {
-  try {
-    let response = await fetch(
-      `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,relative_humidity_2m,precipitation,rain,weather_code,apparent_temperature`,
-    );
-    if (response.ok) {
-      const weather = await response.json();
-      temp = weather.current.apparent_temperature;
-      generate(temp, 0);
+      let admin1 = data.results[0].name;
+      await getweath(lat, lon,admin1);
     }
   } catch (error) {
     document.querySelector("#tempretureP").innerHTML = "error";
   }
 }
+
+async function getweath(lat, lon,admin1) {
+  try {
+    let response = await fetch(
+      `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,apparent_temperature,precipitation,wind_speed_10m,wind_direction_10m,relative_humidity_2m`,
+    );
+    
+    if (response.ok) {
+      const weather = await response.json();
+      let temp = weather.current.temperature_2m;
+      let tempC= weather.current.apparent_temperature
+      let prep =  weather.current.precipitation
+      let windS =weather.current.wind_speed_10m
+      let HU =weather.current.relative_humidity_2m
+      generate(temp, tempC,prep,windS,HU,admin1);
+    }
+  } catch (error) {
+    document.querySelector("#tempretureP").innerHTML = "error";
+    console.log(error);
+  }
+}
+
+
+inputAreainput.forEach((element) => {
+    placeholderBlur(element);
+
+    element.onfocus=()=>{
+        placeholderFocus(element);
+    }
+    element.onblur=()=>{
+        placeholderBlur(element);
+    }
+});
+
+function placeholderFocus(element){
+    element.nextElementSibling.style.display="block"
+    element.nextElementSibling.style.transform="translateY(-20px) translateX(-10px)"
+};
+
+function placeholderBlur(element){
+    if(element.value==""){
+        element.nextElementSibling.style.transform="translateY(0px)"
+    }
+    else{
+        element.nextElementSibling.style.transform="translateY(-20px) translateX(-10px)"
+    }
+};

@@ -14,37 +14,47 @@
     />
   </head>
   <body>
-    <main id="main">
-      <div id="EnterCity">
-        <h1>Enter your city</h1>
-        <input id="cityinput" /> <button id="btn">generate</button>
+    <div id="EnterCity">
+      <div class="placeholderParent">
+        <input id="cityinput" />
+        <p class="placeholder">city name</p>
       </div>
+      <button id="btn" style="display: none">generate</button>
+    </div>
+    <main id="main">
+      <div id="displayParent">
+        <div id="display">
+          <p id="tempretureP">xy</p>
+          <div id="charanum">
+            <div id="tempdiv">
+              <div id="chara">
+                <div id="facep">
+                  <img src="/chara/eyes/eyes0.png" id="eye" />
 
-      <div id="display">
-        <p id="tempretureP">xy</p>
-        <div id="charanum">
-          <div id="tempdiv">
-            <div id="chara">
-              <div id="facep">
-                <img src="/chara/eyes/eyes0.png" id="eye" />
-
-                <img src="./chara/testface.png" id="skinT" />
-                <div id="hairS">
-                  <img id="hairC">
+                  <img src="./chara/testface.png" id="skinT" />
+                  <div id="hairS">
+                    <img id="hairC" />
+                  </div>
+                  <img src="./chara/coldH0.png" id="hat" />
+                  <img src="./chara/testface.png" id="face" />
                 </div>
-                <img src="./chara/coldH0.png" id="hat" />
-                <img src="./chara/testface.png" id="face" />
-              </div>
-              <div id="torso">
+                <div id="torso">
+                  <img src="./chara/skinB/skinB0.png" id="skinB" />
+                  <img src="./chara/testshirt.png" id="shirt" />
 
-                <img src="./chara/skinB/skinB0.png" id="skinB" />
-                <img src="./chara/testshirt.png" id="shirt" />
-
-                <img src="./chara/sumshirts/shirt0.png" id="tshirt" />
+                  <img src="./chara/sumshirts/shirt0.png" id="tshirt" />
+                </div>
               </div>
             </div>
           </div>
         </div>
+      </div>
+      <div id="infoDisplay">
+        <h1>cairo</h1>
+<div class="dataItems"> <img src="https://www.svgrepo.com/show/341126/temperature-feels-like.svg" alt="feels like icon"><p>feels like:c</p></div>
+<div class="dataItems"> <img src="https://www.svgrepo.com/show/127751/raindrops.svg" alt="Precipitation icon"><p>Precipitation:%</p></div>
+<div class="dataItems"> <img src="https://www.svgrepo.com/show/510348/wind.svg" alt="Wind icon"><p>Wind speed:km/h</p></div>
+<div class="dataItems"> <img src="https://www.svgrepo.com/show/521708/humidity.svg" alt="Humidity icon"><p>Humidity:%</p></div>
       </div>
     </main>
 
