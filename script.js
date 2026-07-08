@@ -17,23 +17,26 @@ document.getElementById('btn').onclick=()=>{
 
 let temp = 0;
 
+
 function awaiting() {
   document.querySelector("#tempretureP").innerHTML = '<div class="loader"></div>';
   let dataP = document.querySelectorAll(".dataItems p");
-dataP[0].innerHTML=`feels like:c`;
-dataP[1].innerHTML=`Precipitatione:%`;
-dataP[2].innerHTML=`Wind speed:km/h`;
-dataP[3].innerHTML=`Humidity:`;
+dataP[0].innerHTML=`Feels like: C`;
+dataP[1].innerHTML=`Precipitation: %`;
+dataP[2].innerHTML=`Wind: km/h`;
+dataP[3].innerHTML=`Humidity: %`;
 }
 
-function generate(temp,tempC, prep,windS,HU,admin1) {
+function generate(temp,tempC, prep,windS,HU,windD,admin1) {
 let dataP = document.querySelectorAll(".dataItems p");
 let dataH1=  document.querySelector("#infoDisplay h1");
 dataH1.innerHTML=admin1;
-dataP[0].innerHTML=`feels like:${tempC}c`;
-dataP[1].innerHTML=`Precipitatione:${prep}%`;
-dataP[2].innerHTML=`Wind speed:${windS}km/h`;
-dataP[3].innerHTML=`Humidity:${HU}`;
+dataP[0].innerHTML=`Feels like: ${tempC} C`;
+dataP[1].innerHTML=`Precipitation: ${prep} %`;
+dataP[2].innerHTML=`Wind: ${windS} km/h`;
+document.querySelector("#windDirection").style.display=`flex`;
+document.querySelector("#windDirection").style.transform=`rotate(${windD}deg)`;
+dataP[3].innerHTML=`Humidity: ${HU} %`;
 
 
 
@@ -98,7 +101,9 @@ async function getweath(lat, lon,admin1) {
       let prep =  weather.current.precipitation
       let windS =weather.current.wind_speed_10m
       let HU =weather.current.relative_humidity_2m
-      generate(temp, tempC,prep,windS,HU,admin1);
+      let windD =weather.current.wind_direction_10m
+      
+      generate(temp, tempC,prep,windS,HU,windD,admin1);
     }
   } catch (error) {
     document.querySelector("#tempretureP").innerHTML = "error";
@@ -131,3 +136,33 @@ function placeholderBlur(element){
         element.nextElementSibling.style.transform="translateY(-20px) translateX(-10px)"
     }
 };
+
+function fixWidths(){
+if(window.innerWidth <= 680){
+  document.querySelector("main").style.flexDirection="column";
+document.querySelector("body").style.height="1200px";
+document.querySelector("main").style.height="1200px";
+document.querySelector("#infoDisplay").style.paddingTop="50px";
+document.querySelector("#display").style.width="100vw";
+let charaimg = document.querySelectorAll("#chara img");
+charaimg.forEach(element => {element.style.width="150px";});
+}
+else{
+  document.querySelector("main").style.flexDirection="row";
+document.querySelector("body").style.height="100vh";
+document.querySelector("main").style.height="700px";
+document.querySelector("main").style.width="100vw";
+document.querySelector("#infoDisplay").style.paddingTop="100px";
+document.querySelector("#display").style.width="600px";
+let charaimg = document.querySelectorAll("#chara img");
+charaimg.forEach(element => {element.style.width="200px";});
+
+}
+}
+
+fixWidths();
+
+window.onresize=()=>{
+fixWidths()
+}
+
